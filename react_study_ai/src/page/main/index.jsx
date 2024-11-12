@@ -1,46 +1,28 @@
-import React, { useState } from "react";
-import { CallGpt } from "../../api/gpt";
-import InputBox from "./InputBox";
+import React from "react";
+import CheckBox from "./components/CheckBox";
 
-const fake = JSON.parse(`{"title": "약 이름", "content":"영양제 내용"}`);
-
-const Index = () => {
-  const [data, setData] = useState(fake);
-  const [loading, setLoading] = useState(false);
-  const [qs, setQs] = useState();
-
-  const handleClickGpt = async (userInput) => {
-    try {
-      setLoading(true);
-      const message = await CallGpt({
-        prompt: `${userInput}`,
-      });
-
-      // 백틱과 ```json 포맷 제거
-      const cleanedMessage = message.replace(/```json|```/g, "").trim();
-
-      // JSON 파싱 후 상태 업데이트
-      setData(JSON.parse(cleanedMessage));
-      setQs(userInput);
-      console.log("inputdata", userInput, "message", message);
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+const index = () => {
   return (
-    <>
-      <InputBox onClick={handleClickGpt} />
-      <div>내 질문: {qs}</div>
-      <div>약이름: {data?.title}</div>
-      <div>content: {data?.content}</div>
-      {/* <div>ingredient: {data?.ingredient}</div>
-      <div>effect: {data?.effect}</div>
-      <div>taking: {data?.taking}</div> */}
-    </>
+    <div className="health-container">
+      <div className="health-header-container">
+        <div className="health-header-title">Biomatch</div>
+        <div className="health-header-condition-container">
+          <div className="health-header-condition">
+            어제에 비해 <br />
+            컨디션이 좋아요!
+          </div>
+        </div>
+      </div>
+      <CheckBox
+        title={"나의 건강 상태 측정하기"}
+        content={"BMI를 측정하여 나의 건강상태를 확인해 보세요"}
+      />
+      <CheckBox
+        title={"영양제 추천 "}
+        content={"AI 채팅을 통해서 영양제를 추천 받아 보아요"}
+      />
+    </div>
   );
 };
 
-export default Index;
+export default index;

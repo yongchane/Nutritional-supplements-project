@@ -9,68 +9,64 @@ import { ReactComponent as Up } from "../assets/footer/trendingup.svg";
 import { ReactComponent as Union } from "../assets/footer/Union.svg";
 import { ReactComponent as ActiveUnion } from "../assets/footer/ActiveUnion.svg";
 
+import { ReactComponent as Atcalendar } from "../assets/foot/Atcalendar.svg";
+import { ReactComponent as Athealth } from "../assets/foot/Athealth.svg";
+import { ReactComponent as Atpill } from "../assets/foot/Atpill.svg";
+import { ReactComponent as Calendar } from "../assets/foot/calendar.svg";
+import { ReactComponent as Health } from "../assets/foot/health.svg";
+import { ReactComponent as Pill } from "../assets/foot/pill.svg";
+
 const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname;
-  const selectedSection = useSelector(
-    (state) => state.selectedSection.selectedSection
-  );
 
   // 클릭된 항목의 상태를 관리하는 state 추가
   const [activeItem, setActiveItem] = useState(null);
 
-  useEffect(() => {}, [selectedSection]);
-
   return (
     <div className="footer-container">
-      {selectedSection === "view1" ? (
-        <div className="footer-item-container">
-          <div
-            className={`footer-item footer-item-left ${
-              activeItem === "home" ? "active" : ""
-            }`}
-            onClick={() => {
-              setActiveItem("home");
-              navigate("/main");
-            }}
-          >
-            {path === "/main" ? <ActiveUnion /> : <Union />}
-            물기도문
-          </div>
-          <div
-            className={`footer-item ${activeItem === "record" ? "active" : ""}`}
-            onClick={() => {
-              setActiveItem("record");
-              navigate("/record");
-            }}
-          >
-            {path === "/record" || path === "/drinkrecord" ? (
-              <ActiveEdit />
-            ) : (
-              <Edit />
-            )}
-            세례기록
-          </div>
+      <div className="footer-item-container">
+        <div
+          className={`footer-item footer-item-left ${
+            path === "/main" ? "active" : ""
+          }`}
+          onClick={() => {
+            setActiveItem("home");
+            navigate("/main");
+          }}
+        >
+          {path === "/main" ? <Athealth /> : <Health />}
+          건강체크
+        </div>
+        <div
+          className={`footer-item ${path === "/record" ? "active" : ""}`}
+          onClick={() => {
+            setActiveItem("record");
+            navigate("/record");
+          }}
+        >
+          {path === "/record" || path === "/drinkrecord" ? (
+            <Atpill />
+          ) : (
+            <Pill />
+          )}
+          영양제
+        </div>
 
-          <div
-            className={`footer-item footer-item-right ${
-              activeItem === "statistic" ? "active" : ""
-            }`}
-            onClick={() => {
-              setActiveItem("statistic");
-              navigate("/statistic");
-            }}
-          >
-            {path === "/statistic" || path === "/week" ? <ActiveUp /> : <Up />}
-            통계
-          </div>
+        <div
+          className={`footer-item footer-item-right ${
+            path === "/statistic" ? "active" : ""
+          }`}
+          onClick={() => {
+            setActiveItem("statistic");
+            navigate("/statistic");
+          }}
+        >
+          {path === "/statistic" ? <Atcalendar /> : <Calendar />}
+          캘린더
         </div>
-      ) : (
-        <div className="footer-routine-view-container">
-          <button className="footer-routine-view-button">목표 만들기</button>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ReactComponent as Rightcursor } from "../../../assets/health/rightcursor.svg";
 
 const ShowNew = () => {
   const [articles, setArticles] = useState([]);
@@ -33,7 +34,6 @@ const ShowNew = () => {
             key={article.url}
             className="health-news-container-box"
             onClick={() => window.open(article.url, "_blank")}
-            style={{ cursor: "pointer" }}
           >
             <div className="health-news-title">
               {article.title || "No Title"}
@@ -44,6 +44,9 @@ const ShowNew = () => {
                   ? `${article.description.slice(0, 100)}...`
                   : article.description
                 : "No Description"}
+            </div>
+            <div className="health-go-news">
+              뉴스 보러가기 <Rightcursor />
             </div>
           </div>
         ))

@@ -13,6 +13,7 @@ const Login2 = lazy(() => import("../page/login/Login2"));
 const Login3 = lazy(() => import("../page/login/Login3"));
 const Login4 = lazy(() => import("../page/login/Login4"));
 const Record = lazy(() => import("../page/record"));
+const Bmi = lazy(() => import("../page/main/components/bmi/Bmi"));
 
 const Statistic = lazy(() => import("../page/statistic"));
 const Week = lazy(() => import("../page/statistic/component/Week"));
@@ -34,13 +35,24 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/main",
+        path: "main",
         element: (
           <Suspense fallback={<Loading />}>
             <Main />
           </Suspense>
         ),
+        children: [
+          {
+            path: "bmi", // /main/bmi가 되도록 상대 경로 사용
+            element: (
+              <Suspense fallback={<Loading />}>
+                <Bmi />
+              </Suspense>
+            ),
+          },
+        ],
       },
+
       {
         path: "login1",
         element: (

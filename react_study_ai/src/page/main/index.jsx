@@ -1,5 +1,6 @@
 import React from "react";
 import CheckBox from "./components/CheckBox";
+import ShowNew from "./components/ShowNews";
 
 const index = () => {
   return (
@@ -21,6 +22,8 @@ const index = () => {
         title={"영양제 추천 "}
         content={"AI 채팅을 통해서 영양제를 추천 받아 보아요"}
       />
+      <div className="health-news-container-title">건강 매거진</div>
+      <ShowNew />
     </div>
   );
 };

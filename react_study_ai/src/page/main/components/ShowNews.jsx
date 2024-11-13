@@ -29,7 +29,12 @@ const ShowNew = () => {
         <p>Loading...</p>
       ) : articles.length > 0 ? (
         articles.slice(0, 5).map((article) => (
-          <div key={article.url} className="health-news-container-box">
+          <div
+            key={article.url}
+            className="health-news-container-box"
+            onClick={() => window.open(article.url, "_blank")}
+            style={{ cursor: "pointer" }}
+          >
             <div className="health-news-title">
               {article.title || "No Title"}
             </div>

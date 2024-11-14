@@ -12,8 +12,11 @@ const Login1 = lazy(() => import("../page/login/Login1"));
 const Login2 = lazy(() => import("../page/login/Login2"));
 const Login3 = lazy(() => import("../page/login/Login3"));
 const Login4 = lazy(() => import("../page/login/Login4"));
+
 const Record = lazy(() => import("../page/record"));
-const Bmi = lazy(() => import("../page/main/components/bmi/Bmi"));
+
+const BmiWeight = lazy(() => import("../page/main/components/bmi/BmiWeight"));
+const BmiHeight = lazy(() => import("../page/main/components/bmi/BmiHeight"));
 
 const Statistic = lazy(() => import("../page/statistic"));
 const Week = lazy(() => import("../page/statistic/component/Week"));
@@ -43,10 +46,18 @@ const router = createBrowserRouter([
         ),
         children: [
           {
-            path: "bmi", // /main/bmi가 되도록 상대 경로 사용
+            path: "weight",
             element: (
               <Suspense fallback={<Loading />}>
-                <Bmi />
+                <BmiWeight />
+              </Suspense>
+            ),
+          },
+          {
+            path: "height",
+            element: (
+              <Suspense fallback={<Loading />}>
+                <BmiHeight />
               </Suspense>
             ),
           },

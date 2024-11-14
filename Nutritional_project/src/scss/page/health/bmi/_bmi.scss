@@ -26,6 +26,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-top: 33px;
     .bmi-show-num {
       display: flex;
       .bmi-input-num {
@@ -34,8 +35,11 @@
         color: #6832e2;
         font-size: 20px;
         font-weight: 900;
+        text-align: right;
       }
       .bmi-num-unit {
+        padding-left: 4px;
+        padding-top: 3px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -44,6 +48,23 @@
         font-size: 16px;
 
         font-weight: 700;
+      }
+    }
+    .bmi-num-submit {
+      width: 350px;
+      margin-top: 130px;
+      display: flex;
+      height: 48px;
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      background: #bbb;
+      color: var(--white, #fff);
+      font-size: 16px;
+      font-weight: 600;
+      .active {
+        background: #6832e2;
       }
     }
   }

@@ -14,7 +14,8 @@ const Layout = () => {
     "/login3",
     "/login4",
     "/",
-    "/main/bmi",
+    "/main/weight",
+    "/main/height",
   ];
 
   // 현재 경로가 hideFooterPaths에 포함되어 있는지 확인
@@ -23,7 +24,9 @@ const Layout = () => {
   return (
     <>
       <div
-        className={`content-container${path === "/main/bmi" ? "active" : ""}`}
+        className={`content-container${
+          path === "/main/weight" || path === "/main/height" ? "active" : ""
+        }`}
       >
         <Outlet />
       </div>

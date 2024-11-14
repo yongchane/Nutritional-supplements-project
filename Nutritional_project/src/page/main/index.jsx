@@ -4,7 +4,7 @@ import Health from "./components/Health";
 
 const Main = () => {
   const location = useLocation();
-  const notShowHealthPath = ["/main/bmi"];
+  const notShowHealthPath = ["/main/weight", "/main/height"];
   const notShowHealth = !notShowHealthPath.includes(location.pathname);
   return (
     <div className="health">

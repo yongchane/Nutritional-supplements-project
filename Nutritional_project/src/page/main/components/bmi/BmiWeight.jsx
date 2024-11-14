@@ -2,9 +2,9 @@ import React from "react";
 import BackHeader from "../../../BackHeader";
 import BmiCheck from "./BmiCheck";
 
-const Bmi = () => {
+const BmiWeight = () => {
   return (
-    <div>
+    <div className="bmi-weight-container">
       <BackHeader back={"/main"} title={"BMI 측정"} />
       <BmiCheck
         title={"몸무게를 입력해주세요"}
@@ -15,4 +15,4 @@ const Bmi = () => {
   );
 };
 
-export default Bmi;
+export default BmiWeight;

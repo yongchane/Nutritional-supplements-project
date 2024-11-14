@@ -18,7 +18,7 @@ const Health = () => {
         </div>
       </div>
       <CheckBox
-        onClick={() => navigate("/main/bmi")}
+        onClick={() => navigate("/main/weight")}
         title={"나의 건강 상태 측정하기"}
         content={"BMI를 측정하여 나의 건강상태를 확인해 보세요"}
       />

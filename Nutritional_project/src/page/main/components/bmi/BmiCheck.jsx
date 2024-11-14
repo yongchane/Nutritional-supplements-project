@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ReactComponent as ActiveDot } from "../../../../assets/health/Activedot.svg";
+import { ReactComponent as dot } from "../../../../assets/health/dot.svg";
 
 const BmiCheck = ({ title, sub, unit }) => {
   const [num, setNum] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const path = location.pathname;
 
   const CalHandler = (e) => {
     e.preventDefault();
@@ -9,7 +15,17 @@ const BmiCheck = ({ title, sub, unit }) => {
   };
 
   const handleChange = (e) => {
-    setNum(e.target.value);
+    const value = e.target.value;
+    // 숫자만 허용하고, 200 이하로 제한
+    if (value === "" || (Number(value) <= 200 && /^\d*$/.test(value))) {
+      setNum(value);
+    }
+  };
+
+  const nextPage = () => {
+    if (path === "/main/weight") {
+      navigate("/main/height");
+    }
   };
 
   return (
@@ -21,13 +37,23 @@ const BmiCheck = ({ title, sub, unit }) => {
       <form onSubmit={CalHandler} className="bmi-num-container">
         <div className="bmi-show-num">
           <input
+            type="text"
             className="bmi-input-num"
             value={num}
             onChange={handleChange}
+            inputMode="numeric"
+            max="200"
+            pattern="[0-9]*"
           />
           <div className="bmi-num-unit">{unit}</div>
         </div>
-        <button type="submit">go</button>
+        <button
+          type="submit"
+          className={`bmi-num-submit${num ? "active" : ""}`}
+          onClick={nextPage}
+        >
+          다음
+        </button>
       </form>
     </div>
   );

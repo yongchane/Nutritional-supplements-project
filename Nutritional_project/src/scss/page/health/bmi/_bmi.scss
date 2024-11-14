@@ -1,0 +1,50 @@
+.bmi-main-container {
+  width: 100%;
+  height: auto;
+  .bmi-main-header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 56px;
+    .bmi-main-header-title {
+      color: #000;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+    .bmi-main-header-subtitle {
+      color: #6832e2;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+  .bmi-num-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .bmi-show-num {
+      display: flex;
+      .bmi-input-num {
+        width: 40px;
+        height: 36px;
+        color: #6832e2;
+        font-size: 20px;
+        font-weight: 900;
+      }
+      .bmi-num-unit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #6832e2;
+        font-family: "Futura Std";
+        font-size: 16px;
+
+        font-weight: 700;
+      }
+    }
+  }
+}

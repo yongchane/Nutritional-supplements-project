@@ -22,7 +22,9 @@ const Layout = () => {
 
   return (
     <>
-      <div className="content-container">
+      <div
+        className={`content-container${path === "/main/bmi" ? "active" : ""}`}
+      >
         <Outlet />
       </div>
       {/* showFooter가 true일 때만 Footer 렌더링 */}

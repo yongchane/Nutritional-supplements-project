@@ -32,15 +32,33 @@ const Chat_gpt = () => {
     }
   };
 
+  const gptData = [{ title: data?.title, content: data?.content, qus: qs }];
+
   return (
     <ChatContainer>
       <Header>
         <BackHeader back={"/main"} title={"AI 채팅"} />
       </Header>
       <Container>
-        <div>내 질문: {qs}</div>
-        <div>약이름: {data?.title}</div>
-        <div>content: {data?.content}</div>
+        <ChatBox>
+          {gptData.map((item) => (
+            <div>
+              <GptBox>
+                <GptImg></GptImg>
+                <Gpt>
+                  <GptName>Bio</GptName>
+                  <GptContent>
+                    <div>약이름: {item?.title}</div>
+                    <div>content: {item?.content}</div>
+                  </GptContent>
+                </Gpt>
+              </GptBox>
+              <MyContent>
+                <div>내 질문:{item.qus}</div>
+              </MyContent>
+            </div>
+          ))}
+        </ChatBox>
         {/* <div>ingredient: {data?.ingredient}</div>
       <div>effect: {data?.effect}</div>
       <div>taking: {data?.taking}</div> */}
@@ -72,14 +90,66 @@ const InputBoxContainer = styled.div`
 `;
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 49px- 103px);
+  overflow-y: auto;
 `;
 const Header = styled.div`
   width: 100%;
   height: 49px;
   position: sticky;
   top: 0;
-
-  z-index: 100;
+  z-index: 1000;
   color: #fff;
+`;
+
+const ChatBox = styled.div`
+  width: 100%;
+  height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 35px;
+`;
+const GptBox = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  gap: 10px;
+`;
+const GptImg = styled.div`
+  width: 40px;
+  height: 40px;
+  background: #e3e3e3;
+  border-radius: 29px;
+`;
+const GptContent = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 0px 10px 10px 10px;
+  background: var(--white, #fff);
+`;
+const GptName = styled.div`
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+`;
+const Gpt = styled.div``;
+const MyContent = styled.div`
+  max-width: 220px;
+  min-width: 100px;
+  width: fit-content;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  color: var(--white, #fff);
+  border-radius: 10px 0px 10px 10px;
+  background: #393939;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  padding: 5px;
+  margin-top: 40px;
 `;

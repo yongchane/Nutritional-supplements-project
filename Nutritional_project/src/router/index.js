@@ -3,9 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Loading from "../components/Loading";
 import Layout from "../layout/Layout";
 
-import mypageRouter from "./mypageRouter";
-import communityRouter from "./communityRouter";
-
 const Logo = lazy(() => import("../layout/LogoPage"));
 const Main = lazy(() => import("../page/main"));
 const Login1 = lazy(() => import("../page/login/Login1"));
@@ -17,6 +14,7 @@ const Record = lazy(() => import("../page/record"));
 
 const BmiWeight = lazy(() => import("../page/main/components/bmi/BmiWeight"));
 const BmiHeight = lazy(() => import("../page/main/components/bmi/BmiHeight"));
+const Chat = lazy(() => import("../page/main/components/Chat_gpt"));
 
 const Statistic = lazy(() => import("../page/statistic"));
 const Week = lazy(() => import("../page/statistic/component/Week"));
@@ -26,9 +24,6 @@ const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      ...mypageRouter,
-      ...communityRouter,
-
       {
         path: "/",
         element: (
@@ -44,24 +39,30 @@ const router = createBrowserRouter([
             <Main />
           </Suspense>
         ),
-        children: [
-          {
-            path: "weight",
-            element: (
-              <Suspense fallback={<Loading />}>
-                <BmiWeight />
-              </Suspense>
-            ),
-          },
-          {
-            path: "height",
-            element: (
-              <Suspense fallback={<Loading />}>
-                <BmiHeight />
-              </Suspense>
-            ),
-          },
-        ],
+      },
+      {
+        path: "weight",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <BmiWeight />
+          </Suspense>
+        ),
+      },
+      {
+        path: "height",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <BmiHeight />
+          </Suspense>
+        ),
+      },
+      {
+        path: "chat",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Chat />
+          </Suspense>
+        ),
       },
 
       {

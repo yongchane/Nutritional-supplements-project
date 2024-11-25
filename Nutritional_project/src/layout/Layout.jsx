@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./Footer";
-
+import InputBox from "../page/main/components/InputBox";
 const Layout = () => {
   const location = useLocation();
   const path = location.pathname;
@@ -14,8 +14,9 @@ const Layout = () => {
     "/login3",
     "/login4",
     "/",
-    "/main/weight",
-    "/main/height",
+    "/weight",
+    "/height",
+    "/chat",
   ];
 
   // 현재 경로가 hideFooterPaths에 포함되어 있는지 확인
@@ -25,7 +26,9 @@ const Layout = () => {
     <>
       <div
         className={`content-container${
-          path === "/main/weight" || path === "/main/height" ? "active" : ""
+          path === "/weight" || path === "/height" || path === "/chat"
+            ? "active"
+            : ""
         }`}
       >
         <Outlet />

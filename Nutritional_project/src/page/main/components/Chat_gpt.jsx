@@ -10,6 +10,9 @@ const Chat_gpt = () => {
   const [data, setData] = useState(fake);
   const [loading, setLoading] = useState(false);
   const [qs, setQs] = useState();
+  const [messages, setMessages] = useState([]); // 메시지를 저장할 상태
+  const [userInput, setUserInput] = useState(""); // 사용자 입력 상태
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태
 
   const handleClickGpt = async (userInput) => {
     try {
@@ -24,6 +27,7 @@ const Chat_gpt = () => {
       // JSON 파싱 후 상태 업데이트
       setData(JSON.parse(cleanedMessage));
       setQs(userInput);
+
       console.log("inputdata", userInput, "message", message);
     } catch (error) {
       console.error("Error:", error);
@@ -138,7 +142,7 @@ const GptName = styled.div`
 const Gpt = styled.div``;
 const MyContent = styled.div`
   max-width: 220px;
-  min-width: 100px;
+  min-width: auto;
   width: fit-content;
   height: auto;
   display: flex;
@@ -150,6 +154,6 @@ const MyContent = styled.div`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  padding: 5px;
+  padding: 10px;
   margin-top: 40px;
 `;

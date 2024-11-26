@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CallGpt } from "../../../api/gpt.js";
 import InputBox from "./InputBox";
 import styled from "styled-components";
 import BackHeader from "../../BackHeader";
 
-const fake = JSON.parse(`{"title": "약 이름", "content":"영양제 내용"}`);
+const fake = JSON.parse(
+  `{"title": "AI 채팅을 통해서 영양제를 추천받아 셀프 메디케이션을 더 효과적으로 경험해보세요 !", "content":""}`
+);
 
 const Chat_gpt = () => {
   const [data, setData] = useState(fake);
   const [loading, setLoading] = useState(false);
   const [qs, setQs] = useState();
-  const [messages, setMessages] = useState([]); // 메시지를 저장할 상태
-  const [userInput, setUserInput] = useState(""); // 사용자 입력 상태
-  const [isLoading, setIsLoading] = useState(false); // 로딩 상태
+  const [history, setHistory] = useState([]); // 새로운 상태 변수 추가
+
+  // 상태가 변경될 때마다 history 배열에 추가
+  useEffect(() => {
+    if (data?.title || data?.content || qs) {
+      setHistory((prevHistory) => [
+        ...prevHistory,
+        { title: data?.title, content: data?.content, question: qs },
+      ]);
+    }
+  }, [data?.title, data?.content, qs]); // 의존성 배열에 추가
 
   const handleClickGpt = async (userInput) => {
     try {
@@ -22,7 +32,15 @@ const Chat_gpt = () => {
       });
 
       // 백틱과 ```json 포맷 제거
-      const cleanedMessage = message.replace(/```json|```/g, "").trim();
+      let cleanedMessage = message.replace(/```json|```/g, "").trim();
+
+      // 줄바꿈 문자를 이스케이프 처리
+      cleanedMessage = cleanedMessage.replace(/\n/g, "\\n");
+
+      // JSON 문자열이 올바른지 확인
+      cleanedMessage = cleanedMessage.replace(/\\n/g, "\n"); // 이스케이프된 줄바꿈을 원래대로 복원
+
+      console.log("Cleaned Message:", cleanedMessage); // 추가된 로그
 
       // JSON 파싱 후 상태 업데이트
       setData(JSON.parse(cleanedMessage));
@@ -36,8 +54,6 @@ const Chat_gpt = () => {
     }
   };
 
-  const gptData = [{ title: data?.title, content: data?.content, qus: qs }];
-
   return (
     <ChatContainer>
       <Header>
@@ -45,27 +61,30 @@ const Chat_gpt = () => {
       </Header>
       <Container>
         <ChatBox>
-          {gptData.map((item) => (
-            <div>
+          {history.map((item, index) => (
+            <div key={index}>
               <GptBox>
-                <GptImg></GptImg>
                 <Gpt>
-                  <GptName>Bio</GptName>
-                  <GptContent>
-                    <div>약이름: {item?.title}</div>
-                    <div>content: {item?.content}</div>
-                  </GptContent>
+                  {item.question && (
+                    <MyContent>
+                      <div>{item.question}</div>
+                    </MyContent>
+                  )}
+                  <Gptresponse>
+                    <GptImg></GptImg>
+                    <GptresponseBox>
+                      <GptName>Bio</GptName>
+                      <GptContent>
+                        <div> {item.title}</div>
+                        <div> {item.content}</div>
+                      </GptContent>
+                    </GptresponseBox>
+                  </Gptresponse>
                 </Gpt>
               </GptBox>
-              <MyContent>
-                <div>내 질문:{item.qus}</div>
-              </MyContent>
             </div>
           ))}
         </ChatBox>
-        {/* <div>ingredient: {data?.ingredient}</div>
-      <div>effect: {data?.effect}</div>
-      <div>taking: {data?.taking}</div> */}
       </Container>
       <InputBoxContainer>
         <InputBox onClick={handleClickGpt} />
@@ -91,11 +110,18 @@ const InputBoxContainer = styled.div`
   display: flex;
   background: #fff;
   padding: 12px 10px;
+  margin-top: 40px;
 `;
 const Container = styled.div`
   width: 100%;
-  height: calc(100vh - 49px- 103px);
+  height: calc(100vh - 49px - 103px);
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const Header = styled.div`
   width: 100%;
@@ -104,6 +130,7 @@ const Header = styled.div`
   top: 0;
   z-index: 1000;
   color: #fff;
+  background-color: #6832e2;
 `;
 
 const ChatBox = styled.div`
@@ -126,7 +153,9 @@ const GptImg = styled.div`
   border-radius: 29px;
 `;
 const GptContent = styled.div`
-  width: auto;
+  max-width: 300px;
+  min-width: auto;
+  width: fit-content;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -156,4 +185,18 @@ const MyContent = styled.div`
   font-weight: 400;
   padding: 10px;
   margin-top: 40px;
+`;
+
+const Gptresponse = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+
+  gap: 10px;
+`;
+const GptresponseBox = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 `;

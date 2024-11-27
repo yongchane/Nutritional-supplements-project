@@ -14,6 +14,7 @@ const Record = lazy(() => import("../page/record"));
 
 const BmiWeight = lazy(() => import("../page/main/components/bmi/BmiWeight"));
 const BmiHeight = lazy(() => import("../page/main/components/bmi/BmiHeight"));
+const BmiResult = lazy(() => import("../page/main/components/bmi/BmiResult"));
 const Chat = lazy(() => import("../page/main/components/Chat_gpt"));
 
 const Statistic = lazy(() => import("../page/statistic"));
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loading />}>
             <BmiHeight />
+          </Suspense>
+        ),
+      },
+      {
+        path: "result",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <BmiResult />
           </Suspense>
         ),
       },

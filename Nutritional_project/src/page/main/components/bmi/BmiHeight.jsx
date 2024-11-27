@@ -4,7 +4,7 @@ import BmiCheck from "./BmiCheck";
 const BmiHeight = () => {
   return (
     <div className="bmi-height-container">
-      <BackHeader back={"/main/weight"} title={"BMI 측정"} />
+      <BackHeader back={"/weight"} title={"BMI 측정"} />
       <BmiCheck
         title={"키를 입력해주세요"}
         sub={"정수로 입력해주세요"}

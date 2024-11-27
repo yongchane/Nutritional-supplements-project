@@ -16,7 +16,7 @@ const BackHeader = ({ title, back }) => {
             navigate(back);
           }}
         >
-          {path === "/chat" ? <WBack /> : <Back />}
+          {path === "/chat" ? <WBack /> : path === "/result" ? <></> : <Back />}
         </div>
         <div className="back-header-title">{title}</div>
       </div>

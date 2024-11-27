@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ReactComponent as ActiveDot } from "../../../../assets/health/Activedot.svg";
-import { ReactComponent as dot } from "../../../../assets/health/dot.svg";
+
+import { ReactComponent as Next } from "../../../../assets/health/next.svg";
+import { ReactComponent as Before } from "../../../../assets/health/before.svg";
 
 const BmiCheck = ({ title, sub, unit }) => {
-  const [num, setNum] = useState("");
+  const [num, setNum] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname;
 
   const CalHandler = (e) => {
     e.preventDefault();
-    alert(`입력한 값: ${num}`);
+    if (num === null) {
+      alert("값을 입력해주세요");
+    } else {
+      alert(`입력한 값: ${num}`);
+    }
   };
 
   const handleChange = (e) => {
@@ -21,10 +26,13 @@ const BmiCheck = ({ title, sub, unit }) => {
       setNum(value);
     }
   };
-
+  console.log("path", num);
   const nextPage = () => {
-    if (path === "/main/weight") {
-      navigate("/main/height");
+    if (num !== null && path === "/weight") {
+      navigate("/height");
+    }
+    if (num !== null && path === "/height") {
+      navigate("/result");
     }
   };
 
@@ -47,9 +55,10 @@ const BmiCheck = ({ title, sub, unit }) => {
           />
           <div className="bmi-num-unit">{unit}</div>
         </div>
+        {path === "/weight" ? <Before /> : <Next />}
         <button
           type="submit"
-          className={`bmi-num-submit${num ? "active" : ""}`}
+          className={`bmi-num-submit ${num ? "active" : ""}`}
           onClick={nextPage}
         >
           다음

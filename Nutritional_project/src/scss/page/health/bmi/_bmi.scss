@@ -27,8 +27,11 @@
     align-items: center;
     text-align: center;
     margin-top: 33px;
+    position: sticky;
+    bottom: 0;
     .bmi-show-num {
       display: flex;
+      margin-bottom: 130px;
       .bmi-input-num {
         width: 40px;
         height: 36px;
@@ -52,7 +55,7 @@
     }
     .bmi-num-submit {
       width: 350px;
-      margin-top: 130px;
+      margin-top: 30px;
       display: flex;
       height: 48px;
       padding: 10px;
@@ -63,9 +66,9 @@
       color: var(--white, #fff);
       font-size: 16px;
       font-weight: 600;
-      .active {
-        background: #6832e2;
-      }
+    }
+    .active {
+      background: #6832e2;
     }
   }
 }

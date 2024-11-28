@@ -10,7 +10,7 @@ const Health = () => {
     const Token = sessionStorage.getItem("accessToken");
     const response = await PostLogOut(Token);
     sessionStorage.removeItem("accessToken");
-    console.log("response", response);
+
     navigate("/");
   };
   return (

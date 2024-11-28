@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Loading from "../components/Loading";
 import Layout from "../layout/Layout";
 
-const Logo = lazy(() => import("../layout/LogoPage"));
 const Register = lazy(() => import("../page/login/Register"));
 const Login = lazy(() => import("../page/login/Login"));
 const Main = lazy(() => import("../page/main"));
@@ -16,8 +15,8 @@ const BmiResult = lazy(() => import("../page/main/components/bmi/BmiResult"));
 const Chat = lazy(() => import("../page/main/components/Chat_gpt"));
 
 const Statistic = lazy(() => import("../page/statistic"));
-const Week = lazy(() => import("../page/statistic/component/Week"));
-const DrinkRecord = lazy(() => import("../page/record/component/DrinkRecord"));
+const Week = lazy(() => import("../page/statistic/"));
+const DrinkRecord = lazy(() => import("../page/record/"));
 
 const router = createBrowserRouter([
   {

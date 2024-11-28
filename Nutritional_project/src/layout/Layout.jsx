@@ -9,15 +9,13 @@ const Layout = () => {
   // Footer를 표시하지 않을 경로를 지정
 
   const hideFooterPaths = [
-    "/login1",
-    "/login2",
-    "/login3",
-    "/login4",
     "/",
     "/weight",
     "/height",
     "/chat",
     "/result",
+
+    "/register",
   ];
   const activePaths = ["/weight", "/height", "/chat", "/result"];
 

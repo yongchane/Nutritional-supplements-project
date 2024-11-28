@@ -79,10 +79,26 @@ const RegisterContainer = styled.div`
   align-items: center;
 `;
 
-const RegisterNickname = styled.input``;
+const RegisterNickname = styled.input`
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+`;
 
-const RegisterEmail = styled.input``;
+const RegisterEmail = styled.input`
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+`;
 
-const RegisterPasswd = styled.input``;
+const RegisterPasswd = styled.input`
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+`;
 
-const RegisterButton = styled.button``;
+const RegisterButton = styled.button`
+  margin-top: 20px;
+`;

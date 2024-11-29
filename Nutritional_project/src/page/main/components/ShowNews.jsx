@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useNewsStore } from "../../../api/News"; // Zustand 스토어 임포트
+import { GetNews } from "../../../api/News"; // GetNews 함수 임포트
 import { ReactComponent as Rightcursor } from "../../../assets/health/rightcursor.svg";
 
 const ShowNew = () => {
-  const [articles, setArticles] = useState([]);
+  const { articles, setArticles } = useNewsStore(); // 스토어에서 articles와 setArticles 가져오기
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          "https://newsapi.org/v2/top-headlines?q=health&apiKey=e6a9b70aea5a4dd1b265f13208bebe74"
-        );
-        console.log("Full response:", response.data); // 전체 응답 확인
-        setArticles(response.data.articles || []); // 응답이 없으면 빈 배열로 설정
+        await GetNews(); // GetNews 호출하여 데이터 가져오기
       } catch (error) {
         console.log("Error fetching data:", error);
       } finally {
@@ -22,7 +19,9 @@ const ShowNew = () => {
       }
     };
     fetchData();
-  }, []);
+  }, []); // 의존성 배열에 빈 배열 추가
+
+  console.log("articles", articles, "setArticles", setArticles);
 
   return (
     <div className="health-news-container">

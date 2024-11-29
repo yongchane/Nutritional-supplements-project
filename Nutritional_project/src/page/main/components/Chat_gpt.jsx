@@ -110,11 +110,11 @@ const InputBoxContainer = styled.div`
   display: flex;
   background: #fff;
   padding: 12px 10px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 `;
 const Container = styled.div`
   width: 100%;
-  height: calc(100vh - 49px - 103px);
+  height: calc(100vh - 130px - 103px);
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -125,7 +125,7 @@ const Container = styled.div`
 `;
 const Header = styled.div`
   width: 100%;
-  height: 49px;
+  height: 130px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -135,10 +135,10 @@ const Header = styled.div`
 
 const ChatBox = styled.div`
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   padding-left: 20px;
   padding-right: 20px;
-  margin-top: 35px;
+  /* margin-top: 35px; */
 `;
 const GptBox = styled.div`
   width: 100%;

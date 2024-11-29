@@ -1,4 +1,10 @@
 import axios from "axios";
+import { create } from "zustand";
+
+const useLoginStore = create((set) => ({
+  loginData: {},
+  setLoginData: (loginData) => set({ loginData }),
+}));
 
 const PostLogin = async (formData) => {
   const { email, password } = formData;

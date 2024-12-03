@@ -8,7 +8,9 @@ const Login = lazy(() => import("../page/login/Login"));
 const Main = lazy(() => import("../page/main"));
 
 const Record = lazy(() => import("../page/record"));
-
+const RecordDetail = lazy(() =>
+  import("../page/record/component/RecordDetail")
+);
 const BmiWeight = lazy(() => import("../page/main/components/bmi/BmiWeight"));
 const BmiHeight = lazy(() => import("../page/main/components/bmi/BmiHeight"));
 const BmiResult = lazy(() => import("../page/main/components/bmi/BmiResult"));
@@ -84,6 +86,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loading />}>
             <Record />
+          </Suspense>
+        ),
+      },
+      {
+        path: "record/:item",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <RecordDetail />
           </Suspense>
         ),
       },

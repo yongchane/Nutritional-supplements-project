@@ -14,7 +14,7 @@ const Footer = () => {
   const path = location.pathname;
 
   return (
-    <div className="footer-container">
+    <div className={`footer-container ${path === "/" ? "no-border" : ""}`}>
       {path === "/" ? (
         <div className="footer-main">
           <div className="footer-main-text" onClick={() => navigate("/main")}>

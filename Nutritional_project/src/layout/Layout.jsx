@@ -20,10 +20,11 @@ const Layout = () => {
 
   // 현재 경로가 hideFooterPaths에 포함되어 있는지 확인
   const showFooter = !hideFooterPaths.includes(path); // showFooter는 path가 hideFooterPaths에 없으면 true
+  const showActive = activePaths.includes(path);
 
   return (
     <>
-      <div className={`content-container${activePaths ? "active" : ""}`}>
+      <div className={`content-container ${showActive ? "active" : ""}`}>
         <Outlet />
       </div>
       {/* showFooter가 true일 때만 Footer 렌더링 */}

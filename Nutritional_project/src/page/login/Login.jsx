@@ -36,10 +36,16 @@ const Login = () => {
 
   return (
     <LoginContainer>
-      <LoginEmail type="email" id="email" onChange={InputChange}></LoginEmail>
+      <LoginEmail
+        type="email"
+        id="email"
+        placeholder="이메일"
+        onChange={InputChange}
+      ></LoginEmail>
       <LoginPassword
         type="password"
         id="password"
+        placeholder="비밀번호"
         onChange={InputChange}
       ></LoginPassword>
       <LoginBtnContainer>
@@ -60,6 +66,7 @@ const LoginContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 const LoginEmail = styled.input`
   border: 1px solid #e0e0e0;
@@ -76,7 +83,15 @@ const LoginBtnContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  gap: 10px;
+  gap: 30px;
 `;
-const LoginButton = styled.button``;
-const RegisterBtn = styled.button``;
+const LoginButton = styled.button`
+  &:hover {
+    color: gray;
+  }
+`;
+const RegisterBtn = styled.button`
+  &:hover {
+    color: gray;
+  }
+`;

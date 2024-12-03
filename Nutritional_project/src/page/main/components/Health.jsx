@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import PostLogOut from "../../../api/login/PostLogOut";
 const Health = () => {
   const navigate = useNavigate();
+  const accessToken = sessionStorage.getItem("accessToken");
   const handleLogOut = async () => {
     const Token = sessionStorage.getItem("accessToken");
     const response = await PostLogOut(Token);
@@ -13,12 +14,15 @@ const Health = () => {
 
     navigate("/");
   };
+
   return (
     <div className="health-container">
       <div className="health-header-container">
         <div className="health-header-title">Biomatch</div>
         <div className="health-header-condition-container">
-          <LogOutButton onClick={handleLogOut}>로그아웃</LogOutButton>
+          {accessToken && (
+            <LogOutButton onClick={handleLogOut}>로그아웃</LogOutButton>
+          )}
           <div className="health-header-condition">
             어제에 비해 <br />
             컨디션이 좋아요!

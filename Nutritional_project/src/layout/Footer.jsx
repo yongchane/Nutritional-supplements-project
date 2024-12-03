@@ -15,44 +15,52 @@ const Footer = () => {
 
   return (
     <div className="footer-container">
-      <div className="footer-item-container">
-        <div
-          className={`footer-item footer-item-left ${
-            path === "/main" ? "active" : ""
-          }`}
-          onClick={() => {
-            navigate("/main");
-          }}
-        >
-          {path === "/main" ? <Athealth /> : <Health />}
-          건강체크
+      {path === "/" ? (
+        <div className="footer-main">
+          <div className="footer-main-text" onClick={() => navigate("/main")}>
+            로그인 없이 이용하기
+          </div>
         </div>
-        <div
-          className={`footer-item ${path === "/record" ? "active" : ""}`}
-          onClick={() => {
-            navigate("/record");
-          }}
-        >
-          {path === "/record" || path === "/drinkrecord" ? (
-            <Atpill />
-          ) : (
-            <Pill />
-          )}
-          영양제
-        </div>
+      ) : (
+        <div className="footer-item-container">
+          <div
+            className={`footer-item footer-item-left ${
+              path === "/main" ? "active" : ""
+            }`}
+            onClick={() => {
+              navigate("/main");
+            }}
+          >
+            {path === "/main" ? <Athealth /> : <Health />}
+            건강체크
+          </div>
+          <div
+            className={`footer-item ${path === "/record" ? "active" : ""}`}
+            onClick={() => {
+              navigate("/record");
+            }}
+          >
+            {path === "/record" || path === "/drinkrecord" ? (
+              <Atpill />
+            ) : (
+              <Pill />
+            )}
+            영양제
+          </div>
 
-        <div
-          className={`footer-item footer-item-right ${
-            path === "/statistic" ? "active" : ""
-          }`}
-          onClick={() => {
-            navigate("/statistic");
-          }}
-        >
-          {path === "/statistic" ? <Atcalendar /> : <Calendar />}
-          캘린더
+          <div
+            className={`footer-item footer-item-right ${
+              path === "/statistic" ? "active" : ""
+            }`}
+            onClick={() => {
+              navigate("/statistic");
+            }}
+          >
+            {path === "/statistic" ? <Atcalendar /> : <Calendar />}
+            캘린더
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -4,9 +4,25 @@
   height: 100px;
   width: 100%;
   box-sizing: border-box;
-  border-top: 2px solid #b4b4b4;
-  z-index: 10px;
 
+  z-index: 10px;
+  .footer-main {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    .footer-main-text {
+      display: flex;
+      font-size: 12px;
+      background: #6832e2;
+      border-radius: 8px;
+      color: white;
+      width: auto;
+      max-width: 140px;
+      padding: 10px 20px;
+    }
+  }
   .footer-item-container {
     display: flex;
     justify-content: space-between;
@@ -14,7 +30,7 @@
     margin-top: 20px;
     border-top: 10px solid transparent;
     font-size: 12px;
-
+    border-top: 2px solid #b4b4b4;
     font-weight: 500;
     .footer-item {
       display: flex;

@@ -9,7 +9,6 @@ const Layout = () => {
   // Footer를 표시하지 않을 경로를 지정
 
   const hideFooterPaths = [
-    "/",
     "/weight",
     "/height",
     "/chat",

@@ -1,24 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import styled from "styled-components";
-const index = () => {
+import { ReactComponent as Frown } from "../../assets/record/frown.svg";
+import { ReactComponent as Meh } from "../../assets/record/meh.svg";
+import { ReactComponent as Smile } from "../../assets/record/smile.svg";
+import { ReactComponent as AFrown } from "../../assets/record/Afrown.svg";
+import { ReactComponent as AMeh } from "../../assets/record/Ameh.svg";
+import { ReactComponent as ASmile } from "../../assets/record/Asmile.svg";
+const Record = () => {
+  const [isAFrownClicked, setIsAFrownClicked] = useState(false);
+  const [isAMehClicked, setIsAMehClicked] = useState(false);
+  const [isASmileClicked, setIsASmileClicked] = useState(false);
+
+  const handleAFrownClick = () => {
+    setIsAFrownClicked(!isAFrownClicked);
+  };
+
+  const handleAMehClick = () => {
+    setIsAMehClicked(!isAMehClicked);
+  };
+
+  const handleASmileClick = () => {
+    setIsASmileClicked(!isASmileClicked);
+  };
+
   return (
     <Container>
       <Calendar />
       <Content>
         <CheckList>
           <CheckTitle>오늘의 섭취정보</CheckTitle>
+          <List></List>
         </CheckList>
         <ConditionList>
           <CheckTitle>오늘의 컨디션</CheckTitle>
+          <CheckBox>
+            <div onClick={handleAFrownClick}>
+              {isAFrownClicked ? <AFrown /> : <Frown />}
+            </div>
+            <div onClick={handleAMehClick}>
+              {isAMehClicked ? <AMeh /> : <Meh />}
+            </div>
+            <div onClick={handleASmileClick}>
+              {isASmileClicked ? <ASmile /> : <Smile />}
+            </div>
+          </CheckBox>
         </ConditionList>
       </Content>
     </Container>
   );
 };
 
-export default index;
+export default Record;
 
 const Content = styled.div`
   width: 80%;
@@ -43,6 +77,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 20px;
 `;
 const CheckTitle = styled.div`
   color: var(--festie-gray-800, #3a3a3a);
@@ -63,4 +98,11 @@ const ConditionList = styled.div`
   flex-direction: column;
   margin-top: 30px;
   align-items: center;
+`;
+const List = styled.div``;
+const CheckBox = styled.div`
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  gap: 50px;
 `;

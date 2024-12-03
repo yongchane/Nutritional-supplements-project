@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as SearchBtn } from "../../../assets/record/srcbtn.svg";
+
+import useSearchStore from "../../../api/Search.js";
 const Search = () => {
+  const [input, setInput] = useState("");
+  const { search, setSearch } = useSearchStore();
+
+  const InputChange = (e) => {
+    const { id, value } = e.target;
+    setInput(value); //zustand에 저장
+    console.log("input", input, id);
+  };
+
+  const clickHandler = () => {
+    setSearch(input);
+  };
+
+  console.log("search", search);
   return (
     <Container>
-      <SearchInput placeholder="영양제 혹은 건강 상태를 검색하면 관련 영양제를 추천" />
-      <SearchIcon>
+      <SearchInput
+        category="search"
+        onChange={InputChange}
+        placeholder="영양제 혹은 건강 상태를 검색하면 관련 영양제를 추천"
+      />
+      <SearchIcon onClick={clickHandler}>
         <SearchBtn />
       </SearchIcon>
     </Container>
@@ -20,6 +40,7 @@ const SearchInput = styled.input`
   width: 100%;
   font-size: 14px;
   align-items: center;
+  background: #f8f8fa;
 `;
 const Container = styled.div`
   border-radius: 50px;

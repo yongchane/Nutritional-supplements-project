@@ -3,12 +3,21 @@ import styled from "styled-components";
 import Search from "./component/Search";
 import { useNutritionStore } from "../../api/GetData";
 import { useNavigate } from "react-router-dom";
-
+import useSearchStore from "../../api/Search.js";
+import { useEffect, useState } from "react";
+import { ReactComponent as Delete } from "../../assets/record/delete.svg";
 const Record = () => {
+  const { search } = useSearchStore();
   const { name, content, catergory } = useNutritionStore();
   const navigate = useNavigate();
-  console.log("정보 확인", name, content, catergory);
+  const [searchList, setSearchList] = useState([]);
 
+  useEffect(() => {
+    if (search) {
+      setSearchList((prev) => [...prev, search]);
+    }
+    console.log("내용확인", searchList);
+  }, [search]);
   return (
     <Container>
       <Header>
@@ -16,13 +25,25 @@ const Record = () => {
       </Header>
       <Content>
         <Recent>최근검색어</Recent>
-        <RecordList></RecordList>
+        <RecordList>
+          {searchList.length > 0 &&
+            searchList.map((item, index) => (
+              <RecordItem key={index}>
+                {item}
+                <Delete
+                  onClick={() => {
+                    setSearchList((prev) => prev.filter((_, i) => i !== index));
+                  }}
+                />
+              </RecordItem>
+            ))}
+        </RecordList>
         <Category>카테고리</Category>
         <CategoryList>
-          {catergory.map((item) => (
+          {catergory.map((item, index) => (
             <CategoryItem
               key={item}
-              onClick={() => navigate(`/record/${item}`)}
+              onClick={() => navigate(`/record/${index}`)}
             >
               {item}
             </CategoryItem>
@@ -37,6 +58,7 @@ export default Record;
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
   margin-bottom: 20px;
 `;
 const Header = styled.div`
@@ -55,6 +77,21 @@ const Content = styled.div`
 const RecordList = styled.div`
   width: 100%;
   height: 50px;
+  display: flex;
+  gap: 10px;
+`;
+const RecordItem = styled.div`
+  margin-top: 18px;
+  display: inline-flex;
+  width: fit-content;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 30px;
+  border: 1px solid #6832e2;
+  color: #6832e2;
+  font-size: 15px;
 `;
 const Category = styled.div`
   margin-top: 20px;
@@ -63,6 +100,8 @@ const Category = styled.div`
 const CategoryList = styled.div`
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  height: 80vh;
 `;
 const CategoryItem = styled.div`
   margin-top: 18px;

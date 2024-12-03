@@ -24,7 +24,7 @@ const Layout = () => {
 
   return (
     <>
-      <div className={`content-container ${showActive ? "active" : ""}`}>
+      <div className={`content-container${showActive ? "active" : ""}`}>
         <Outlet />
       </div>
       {/* showFooter가 true일 때만 Footer 렌더링 */}

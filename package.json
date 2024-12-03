@@ -2,6 +2,7 @@
   "dependencies": {
     "date-fns": "^4.1.0",
     "newsapi": "^2.4.1",
+    "react-scripts": "5.0.1",
     "sass": "^1.80.7"
   }
 }

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { ReactComponent as Delete } from "../../assets/record/delete.svg";
 const Record = () => {
   const { search } = useSearchStore();
-  const { name, content, catergory } = useNutritionStore();
+  const { catergory } = useNutritionStore();
   const navigate = useNavigate();
   const [searchList, setSearchList] = useState([]);
 
@@ -28,7 +28,15 @@ const Record = () => {
         <RecordList>
           {searchList.length > 0 &&
             searchList.map((item, index) => (
-              <RecordItem key={index}>
+              <RecordItem
+                key={index}
+                onClick={() => {
+                  const categoryIndex = catergory.indexOf(item);
+                  if (categoryIndex !== -1) {
+                    navigate(`/record/${categoryIndex}`);
+                  }
+                }}
+              >
                 {item}
                 <Delete
                   onClick={() => {

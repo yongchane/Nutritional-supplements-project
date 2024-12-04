@@ -21,7 +21,7 @@ const ShowNew = () => {
     fetchData();
   }, []); // 의존성 배열에 빈 배열 추가
 
-  console.log("articles", articles, "setArticles", setArticles);
+  console.log("articles", articles.data, "setArticles", setArticles);
 
   return (
     <div className="health-news-container">

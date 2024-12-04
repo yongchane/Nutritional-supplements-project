@@ -62,7 +62,7 @@ const CheckList = styled.div`
   border-radius: 12px;
   background: #eeeff5;
   box-shadow: 2px 2px 7.8px 0px rgba(0, 0, 0, 0.25);
-  width: 351px;
+  width: 100%;
   height: 167px;
   flex-shrink: 0;
   display: flex;
@@ -91,7 +91,7 @@ const ConditionList = styled.div`
   border-radius: 12px;
   background: #eeeff5;
   box-shadow: 2px 2px 7.8px 0px rgba(0, 0, 0, 0.25);
-  width: 351px;
+  width: 100%;
   height: 100px;
   flex-shrink: 0;
   display: flex;

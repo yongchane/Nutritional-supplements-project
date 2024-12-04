@@ -23,7 +23,7 @@ const GetNews = async () => {
     const response = await axios.get(baseUrl, {
       params:
         process.env.NODE_ENV === "production"
-          ? { keyword: "영양" } // 배포 환경에서는 프록시에서 쿼리 파라미터 처리
+          ? { keyword: "영양", api_key: "4781ba1fc1a74a4b98526701fac2da72" } // 배포 환경에서는 프록시에서 쿼리 파라미터 처리
           : { keyword: "영양", api_key: "4781ba1fc1a74a4b98526701fac2da72" }, // 로컬 환경에서는 직접 API 호출에 필요한 키 전달
     });
 

@@ -22,26 +22,26 @@ const ShowNew = () => {
   }, []); // 의존성 배열에 빈 배열 추가
 
   console.log("articles", articles.data, "setArticles", setArticles);
-
+  const newsData = articles.data || []; // articles.data가 없을 경우 빈 배열로 초기화
   return (
     <div className="health-news-container">
       {loading ? (
         <p>Loading...</p>
-      ) : articles.length > 0 ? (
-        articles.slice(0, 5).map((article) => (
+      ) : newsData.length > 0 ? (
+        newsData.slice(0, 5).map((article) => (
           <div
-            key={article.url}
+            key={article.content_url}
             className="health-news-container-box"
-            onClick={() => window.open(article.url, "_blank")}
+            onClick={() => window.open(article.content_url, "_blank")}
           >
             <div className="health-news-title">
               {article.title || "No Title"}
             </div>
             <div className="health-news-content">
-              {article.description
-                ? article.description.length > 100
-                  ? `${article.description.slice(0, 100)}...`
-                  : article.description
+              {article.summary
+                ? article.summary.length > 100
+                  ? `${article.summary.slice(0, 100)}...`
+                  : article.summary
                 : "No Description"}
             </div>
             <div className="health-go-news">

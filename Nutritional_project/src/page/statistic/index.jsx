@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+
 import styled from "styled-components";
 import { ReactComponent as Frown } from "../../assets/record/frown.svg";
 import { ReactComponent as Meh } from "../../assets/record/meh.svg";
@@ -27,11 +27,14 @@ const Record = () => {
 
   return (
     <Container>
-      <Calendar />
+      <CalenderContainer>
+        <Calendar />
+      </CalenderContainer>
       <Content>
         <CheckList>
           <CheckTitle>오늘의 섭취정보</CheckTitle>
-          <List></List>
+          <CheckLine />
+          <List placeholder="오늘 섭취 정보를 입력하세요"></List>
         </CheckList>
         <ConditionList>
           <CheckTitle>오늘의 컨디션</CheckTitle>
@@ -57,6 +60,7 @@ export default Record;
 const Content = styled.div`
   width: 80%;
   margin: 0 auto;
+  padding-top: 20px;
 `;
 const CheckList = styled.div`
   border-radius: 12px;
@@ -99,10 +103,29 @@ const ConditionList = styled.div`
   margin-top: 30px;
   align-items: center;
 `;
-const List = styled.div``;
+const List = styled.textarea`
+  width: 100%;
+  margin-top: 5px;
+  height: 100%;
+  border-radius: 0px 0px 12px 12px;
+  background: #eeeff5;
+  padding: 5px;
+`;
 const CheckBox = styled.div`
   display: flex;
   margin-top: 10px;
   align-items: center;
   gap: 50px;
+`;
+const CheckLine = styled.div`
+  width: 100%;
+  border: 1px solid white;
+  margin-top: 7px;
+`;
+const CalenderContainer = styled.div`
+  width: 100%;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
 `;

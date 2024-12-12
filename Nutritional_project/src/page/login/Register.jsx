@@ -48,18 +48,21 @@ const Login = () => {
       <RegisterNickname
         type="nickname"
         id="nickname"
+        placeholder="nickname"
         value={formData.nickname}
         onChange={InputChange}
       />
       <RegisterEmail
         type="email"
         id="email"
+        placeholder="email"
         value={formData.email}
         onChange={InputChange}
       />
       <RegisterPasswd
         type="password"
         id="password"
+        placeholder="password"
         value={formData.password}
         onChange={InputChange}
       />
@@ -101,4 +104,5 @@ const RegisterPasswd = styled.input`
 
 const RegisterButton = styled.button`
   margin-top: 20px;
+  cursor: pointer;
 `;

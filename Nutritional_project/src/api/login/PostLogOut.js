@@ -3,7 +3,7 @@ import axios from "axios";
 export const PostLogOut = async () => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_KEY}/user/logout`,
+      `${process.env.REACT_APP_API_KEY}/api/user/logout`,
       {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,

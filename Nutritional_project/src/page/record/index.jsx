@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useSearchStore from "../../api/Search.js";
 import { useEffect, useState } from "react";
 import { ReactComponent as Delete } from "../../assets/record/delete.svg";
-const Record = () => {
+const Check = () => {
   const { search } = useSearchStore();
   const { catergory } = useNutritionStore();
   const navigate = useNavigate();
@@ -62,7 +62,7 @@ const Record = () => {
   );
 };
 
-export default Record;
+export default Check;
 
 const Container = styled.div`
   width: 100%;

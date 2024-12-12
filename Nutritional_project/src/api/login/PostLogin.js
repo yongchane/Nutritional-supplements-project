@@ -10,7 +10,7 @@ const PostLogin = async (formData) => {
   const { email, password } = formData;
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_KEY}/user/login`,
+      `${process.env.REACT_APP_API_KEY}/api/user/login`,
       {
         email: email,
         password: password,

@@ -4,7 +4,7 @@ const PostRegister = async (formData) => {
   const { nickname, email, password } = formData;
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_KEY}/user/register`,
+      `${process.env.REACT_APP_API_KEY}/api/user/register`,
       {
         nickname: nickname,
         email: email,

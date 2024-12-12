@@ -5,34 +5,47 @@ import { ReactComponent as Next } from "../../../../assets/health/next.svg";
 import { ReactComponent as Before } from "../../../../assets/health/before.svg";
 
 const BmiCheck = ({ title, sub, unit }) => {
-  const [num, setNum] = useState(null);
+  const [weight, setWeight] = useState(null); // 체중 상태
+  const [height, setHeight] = useState(null); // 신장 상태
+  const [num, setNum] = useState(null); // 현재 입력된 값 상태
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname;
 
+  // 값 처리 함수
+  const handleChange = (e) => {
+    const value = e.target.value;
+    if (value === "" || (Number(value) <= 200 && /^\d*$/.test(value))) {
+      setNum(value);
+    }
+  };
+
+  // 제출 처리
   const CalHandler = (e) => {
     e.preventDefault();
     if (num === null) {
       alert("값을 입력해주세요");
     } else {
+      // 여기서 입력한 값에 따라 상태를 업데이트
+      if (path === "/weight") {
+        setWeight(num);
+      } else if (path === "/height") {
+        setHeight(num);
+      }
       alert(`입력한 값: ${num}`);
     }
   };
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    // 숫자만 허용하고, 200 이하로 제한
-    if (value === "" || (Number(value) <= 200 && /^\d*$/.test(value))) {
-      setNum(value);
-    }
-  };
-  console.log("path", num);
+  // 페이지 이동
   const nextPage = () => {
-    if (num !== null && path === "/weight") {
-      navigate("/height");
-    }
-    if (num !== null && path === "/height") {
-      navigate("/result");
+    if (num !== null) {
+      if (path === "/weight") {
+        // 체중 입력 후, 신장 입력 페이지로 이동
+        navigate("/height");
+      } else if (path === "/height") {
+        // 신장 입력 후, 결과 페이지로 이동
+        navigate("/result");
+      }
     }
   };
 

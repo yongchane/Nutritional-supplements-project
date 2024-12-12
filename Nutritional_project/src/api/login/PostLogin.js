@@ -12,7 +12,7 @@ const PostLogin = async (formData) => {
   const { email, password } = formData;
 
   try {
-    const response = await axios.post("/api/proxy/user/login", {
+    const response = await axios.post("/api/user/login", {
       email,
       password,
     });

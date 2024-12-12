@@ -75,7 +75,7 @@ const Chat_gpt = () => {
                     <GptresponseBox>
                       <GptName>Bio</GptName>
                       <GptContent>
-                        <div> {item.title}</div>
+                        <div> {item.title}를 추천합니다!</div>
                         <div> {item.content}</div>
                       </GptContent>
                     </GptresponseBox>

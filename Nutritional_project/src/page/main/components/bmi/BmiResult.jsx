@@ -39,7 +39,10 @@ const BmiResult = () => {
           </DotContainer>
           <ResultTextContainer>
             {" "}
-            <Content>내용 api연동 필요</Content>{" "}
+            <Content>
+              균형 잡힌 체중 : 정상 체중이라면 체중 관련 문제는 드물고, 건강
+              목표에도 잘 부합할 가능성이 높습니다.
+            </Content>{" "}
           </ResultTextContainer>
           <FooterBtn>
             <Btn onClick={() => navigate("/main")}>홈으로</Btn>

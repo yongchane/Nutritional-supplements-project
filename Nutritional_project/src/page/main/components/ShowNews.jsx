@@ -50,7 +50,7 @@ const ShowNew = () => {
           </div>
         ))
       ) : (
-        <p>No articles available.</p>
+        <p>배포 api 결제 필요</p>
       )}
     </div>
   );
